@@ -1,0 +1,12 @@
+version: '2'
+services:
+  angular_moviemasher:
+    image: moviemasher/angular-moviemasher:1.0.23
+    ports:
+      - "8081:80"
+  moviemasher_rb:
+    image: moviemasher/moviemasher.rb:4.0.25
+    volumes_from:
+      - angular_moviemasher
+    command: process_loop
+    tty: true
